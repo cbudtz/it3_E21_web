@@ -16,7 +16,10 @@ public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
         writer.println("Hello!");
+
+
         writer.close();
+        Cookie[] cookies = req.getCookies();
     }
 
     @Override

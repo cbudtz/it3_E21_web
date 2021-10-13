@@ -1,6 +1,29 @@
+<head>
+    <Title>Test</Title>
+</head>
+<body>
+<script>
+    function getPatient(){
+        fetch("rest/patient")
+            .then(function (data){
+            data.text().then(function(text){
+                alert(text)
+                let xmlDoc = new DOMParser().parseFromString(text,"text/xml")
+                alert(xmlDoc.getElementById("patient"))
+                console.log(xmlDoc)
+                document.getElementById("patient").innerText=xmlDoc.getElementsByTagName("name").item(0).innerHTML +xmlDoc.getElementsByTagName("cpr").item(0).innerHTML
+                }
+            )
+        })
+    }
+</script>
 <h1>Den store login side!</h1>
 <form action="api" method="post">
     <input type="text" name="username"><br>
     <input type="password" name="password">
     <button type="submit">Login</button>
 </form>
+    <hr>
+    <div id="patient"></div>
+    <button onclick="getPatient();">Hent patient</button>
+</body>
